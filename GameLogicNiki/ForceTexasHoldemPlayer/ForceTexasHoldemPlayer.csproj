@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{28EF3305-9000-4761-83F1-24DBE78D905C}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{1091EF52-0596-4007-97E9-F2989C4BDA07}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GameLogicNiki</RootNamespace>
-    <AssemblyName>GameLogicNiki</AssemblyName>
+    <RootNamespace>ForceTexasHoldemPlayer</RootNamespace>
+    <AssemblyName>ForceTexasHoldemPlayer</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -47,21 +44,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PokerGame.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DecisionMaker.cs" />
+    <Compile Include="ForcePlayer.cs" />
     <Compile Include="Helpers\CardValuationType.cs" />
-    <Compile Include="Helpers\HandStrengthValidation.cs" />
-    <Compile Include="SmartPlayer\SmartPlayer.cs" />
+    <Compile Include="Helpers\HandStrengthValuation.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <Folder Include="Contracts\" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ForceTexasHoldemPlayer\ForceTexasHoldemPlayer.csproj">
-      <Project>{1091ef52-0596-4007-97e9-f2989c4bda07}</Project>
-      <Name>ForceTexasHoldemPlayer</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
