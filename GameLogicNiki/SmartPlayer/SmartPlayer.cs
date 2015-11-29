@@ -1,8 +1,8 @@
-﻿namespace GameLogicNiki
+﻿namespace SmartPlayerProject
 {
     using System;
 
-    using GameLogicNiki.Helpers;
+    using Helpers;
     using TexasHoldem.Logic;
     using TexasHoldem.Logic.Extensions;
     using TexasHoldem.Logic.Players;

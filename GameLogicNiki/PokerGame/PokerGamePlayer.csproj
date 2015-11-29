@@ -49,9 +49,6 @@
   <ItemGroup>
     <Compile Include="PokerGame.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Helpers\CardValuationType.cs" />
-    <Compile Include="Helpers\HandStrengthValidation.cs" />
-    <Compile Include="SmartPlayer\SmartPlayer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -61,6 +58,10 @@
     <ProjectReference Include="..\ForceTexasHoldemPlayer\ForceTexasHoldemPlayer.csproj">
       <Project>{1091ef52-0596-4007-97e9-f2989c4bda07}</Project>
       <Name>ForceTexasHoldemPlayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SmartPlayer\SmartPlayer.csproj">
+      <Project>{7dd1937f-8276-4ea5-a771-51e2080cb4ef}</Project>
+      <Name>SmartPlayer</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

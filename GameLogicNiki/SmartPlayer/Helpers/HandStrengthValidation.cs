@@ -1,4 +1,4 @@
-﻿namespace GameLogicNiki.Helpers
+﻿namespace SmartPlayerProject.Helpers
 {
     using TexasHoldem.Logic.Cards;
 

@@ -10,7 +10,6 @@
     {
         private const int MaxCardTypeValue = 14;
 
-
         private static readonly int[,] StartingHandRecommendations =
             {
                 { 3, 3, 3, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1 }, // AA AKs AQs AJs ATs A9s A8s A7s A6s A5s A4s A3s A2s
@@ -28,7 +27,6 @@
                 { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 } // A2o K2o Q2o J2o T2o 92o 82o 72o 62o 52o 42o 32o 22
             };
 
-
         // http://www.rakebackpros.net/texas-holdem-starting-hands/
         public static CardValuationType PreFlop(Card firstCard, Card secondCard)
         {
@@ -42,8 +40,8 @@
 
             /// "Flush" or "Straight" probability
             if (firstCard.Suit == secondCard.Suit ||
-                firstCard.Type + 1 == secondCard.Type ||
-                secondCard.Type + 1 == firstCard.Type)
+                (int)firstCard.Type + 1 == (int)secondCard.Type ||
+                (int)secondCard.Type + 1 == (int)firstCard.Type)
             {
                 value += 1;
             }
