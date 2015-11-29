@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using TexasHoldem.Logic;
     using TexasHoldem.Logic.Cards;
+    using TexasHoldem.Logic.Extensions;
     using TexasHoldem.Logic.Helpers;
 
     internal class HandStrengthValuation
@@ -45,6 +46,17 @@
                 secondCard.Type + 1 == firstCard.Type)
             {
                 value += 1;
+            }
+
+            // VaBank play
+            if (value == 0)
+            {
+                var chanceToBetOnBadHand = RandomProvider.Next(1, 10);
+
+                if (chanceToBetOnBadHand < 9)
+                {
+                    value += 1;
+                }
             }
 
             switch (value)
@@ -99,55 +111,109 @@
         {
             cardsInEvaluatedHand[0] = firstCard;
             cardsInEvaluatedHand[1] = secondCard;
+            
+            var listOfCommunityCards = new List<Card>();
+
+            byte fiveCardsIndex = 2;
+            foreach (var card in communityCards)
+            {
+                listOfCommunityCards.Add(card);
+                if (fiveCardsIndex < 5)
+                {
+                    cardsInEvaluatedHand[fiveCardsIndex] = card;
+                }
+                fiveCardsIndex++;
+            }
+
+            // initial value of best hand
+            var bestHandEver = currentBestHandEvaluator.GetBestHand(cardsInEvaluatedHand);
 
             /// "Flop" round
-            if (communityCards.Count == 3)
+            if (listOfCommunityCards.Count == 3)
             {
-                
-                var k = 2;
-                foreach (var card in communityCards)
+                fiveCardsIndex = 2;
+                foreach (var card in listOfCommunityCards)
                 {
-                    cardsInEvaluatedHand[k] = card;
-                    k++;
+                    cardsInEvaluatedHand[fiveCardsIndex] = card;
+                    fiveCardsIndex++;
                 }
 
                 return currentBestHandEvaluator.GetBestHand(cardsInEvaluatedHand);
             }
-            /// "Turn" round
-            else if (communityCards.Count == 4)
+            /// "Turn" or "River" round
+            else if (listOfCommunityCards.Count > 3)
             {
-                // TODO: Implement finding best 5 out of 4 + 2 cards
-                var k = 2;
-                foreach (var card in communityCards)
+                BestHand currentBestHand;
+                //BestHand bestHandEver;
+                int maxRank = 0;
+
+                fiveCardsIndex = 2;
+                /// check if players hand have combination with 3 cards out of 4 on the table
+                for (int j = 0; j < listOfCommunityCards.Count; j++)
                 {
-                    if (k < 5)
+                    fiveCardsIndex = 2;
+                    for (int i = 0; i < listOfCommunityCards.Count; i++)
                     {
-                        cardsInEvaluatedHand[k] = card;
+                        if ((j != i) && (fiveCardsIndex < 5))
+                        {
+                            cardsInEvaluatedHand[fiveCardsIndex] = listOfCommunityCards[i];
+                        }
+                        fiveCardsIndex++;
                     }
-                    k++;
+
+                    currentBestHand = currentBestHandEvaluator.GetBestHand(cardsInEvaluatedHand);
+
+                    CheckIfCurrentBestHandIsBestHand(currentBestHand, ref bestHandEver, ref maxRank);
                 }
 
-                return currentBestHandEvaluator.GetBestHand(cardsInEvaluatedHand);
-            }
-            /// "River" round
-            else if (communityCards.Count == 5)
-            {
-                // TODO: Implement finding best 5 out of 5 + 2 cards
-                var k = 2;
-                foreach (var card in communityCards)
+                /// check only with the first card of the players hand
+                cardsInEvaluatedHand[0] = firstCard;
+                fiveCardsIndex = 1;
+                foreach (var card in listOfCommunityCards)
                 {
-                    if (k < 5)
+                    if (fiveCardsIndex < 5)
                     {
-                        cardsInEvaluatedHand[k] = card;
+                        cardsInEvaluatedHand[fiveCardsIndex] = card;
                     }
-                    k++;
+                    fiveCardsIndex++;
                 }
 
-                return currentBestHandEvaluator.GetBestHand(cardsInEvaluatedHand);
+                currentBestHand = currentBestHandEvaluator.GetBestHand(cardsInEvaluatedHand);
+
+                // check if better combination was found
+                CheckIfCurrentBestHandIsBestHand(currentBestHand, ref bestHandEver, ref maxRank);
+
+                /// check only with the second card of the players hand 
+                cardsInEvaluatedHand[0] = secondCard;
+                fiveCardsIndex = 1;
+                foreach (var card in listOfCommunityCards)
+                {
+                    if (fiveCardsIndex < 5)
+                    {
+                        cardsInEvaluatedHand[fiveCardsIndex] = card;
+                    }
+                    fiveCardsIndex++;
+                }
+
+                currentBestHand = currentBestHandEvaluator.GetBestHand(cardsInEvaluatedHand);
+
+                // check if better combination was found
+                CheckIfCurrentBestHandIsBestHand(currentBestHand, ref bestHandEver, ref maxRank);
+
+                return bestHandEver;
             }
             else
             {
                 return currentBestHandEvaluator.GetBestHand(cardsInEvaluatedHand);
+            }
+        }
+
+        private static void CheckIfCurrentBestHandIsBestHand(BestHand currentBestHand, ref BestHand bestHandEver, ref int maxRank)
+        {
+            if ((int)currentBestHand.RankType > maxRank)
+            {
+                bestHandEver = currentBestHand;
+                maxRank = (int)currentBestHand.RankType;
             }
         }
     }
