@@ -6,7 +6,7 @@
     using Logic.Players;
     using AI.TodorPlayer;
     using AI.DummyPlayer;
-    using Bullets.Logic;
+    //using Bullets.Logic;
     using AI.SmartPlayer;
 
     public class CustomSimulation : BaseGameSimulator
@@ -18,7 +18,7 @@
 
         protected override IPlayer GetSecondPlayer()
         {
-            return new BulletsPlayer();
+            return new SmartPlayer();
         }
     }
 }
