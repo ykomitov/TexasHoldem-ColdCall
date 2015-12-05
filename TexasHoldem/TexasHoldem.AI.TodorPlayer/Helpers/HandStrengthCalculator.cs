@@ -66,5 +66,23 @@
 
             return deck;
         }
+
+        public static double CalculatePotOdds(double pot, double moneyToCall, int moneyToRaise)
+        {
+            var potOdds = moneyToCall / (pot + moneyToCall);
+
+            if (potOdds == 0)
+            {
+                //return 0.1; // TODO: Not sure what to return here, do more research
+                potOdds = (double)moneyToRaise / (pot + moneyToRaise);
+            }
+
+            return potOdds;
+        }
+
+        public static double CalculateRateOfReturn(double handStrength, double potOdds)
+        {
+            return handStrength / potOdds;
+        }
     }
 }

@@ -6,7 +6,7 @@
     using Logic.Cards;
     using Logic.Players;
 
-    internal abstract class BasePlayerState : IPlayerState, IPlayer
+    public abstract class BasePlayerState : IPlayerState, IPlayer
     {
         public BasePlayerState()
         {
@@ -24,6 +24,10 @@
         public int GamesWon { get; set; }
 
         protected double HandStrength { get; set; }
+
+        protected double PotOdds { get; set; }
+
+        protected double RateOfReturn { get; set; }
 
         protected IReadOnlyCollection<Card> CommunityCards { get; private set; }
 

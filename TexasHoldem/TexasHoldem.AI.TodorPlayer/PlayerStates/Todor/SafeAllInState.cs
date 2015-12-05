@@ -4,7 +4,7 @@
     using System.Linq;
     using TexasHoldem.Logic.Players;
 
-    internal class SafeAllInState : BasePlayerState
+    public class SafeAllInState : BasePlayerState
     {
         public override PlayerAction GetTurn(GetTurnContext context)
         {

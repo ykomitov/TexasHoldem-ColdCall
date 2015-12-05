@@ -14,6 +14,11 @@
             return rand.Next(min, max);
         }
 
+        public double GetRandomDouble()
+        {
+            return rand.NextDouble();
+        }
+
         public string GetRandomString(int minLen = 5, int maxLen = 10)
         {
             int stringLen = this.GetRandomInteger(minLen, maxLen);
