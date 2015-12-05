@@ -20,7 +20,7 @@
         {
             this.playerStates = new IPlayer[]
             {
-                new TodorAllInPlayerState(),
+                new AllInPlayerState(),
             };
 
             this.rand = new RandomGenerator();

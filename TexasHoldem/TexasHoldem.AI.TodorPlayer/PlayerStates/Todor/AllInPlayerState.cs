@@ -7,7 +7,7 @@
     using TexasHoldem.Logic.Cards;
     using TexasHoldem.Logic.Players;
 
-    internal class TodorAllInPlayerState : IPlayer
+    internal class AllInPlayerState : IPlayer
     {
         private double handStrength = 0;
 
@@ -67,6 +67,11 @@
         public void StartRound(StartRoundContext context)
         {
             this.handStrength = HandStrengthCalculator.Calculate(context.CommunityCards.ToList(), new List<Card> { this.FirstCard, this.SecondCard });
+        }
+
+        public override string ToString()
+        {
+            return this.Name;
         }
     }
 }

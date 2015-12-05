@@ -41,7 +41,7 @@
   <ItemGroup>
     <Compile Include="Helpers\HandStrengthCalculator.cs" />
     <Compile Include="Helpers\RandomGenerator.cs" />
-    <Compile Include="PlayerStates\Todor\TodorAllInPlayerState.cs" />
+    <Compile Include="PlayerStates\Todor\AllInPlayerState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ColdCallPlayer.cs" />
   </ItemGroup>
