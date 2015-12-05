@@ -67,7 +67,7 @@ namespace TexasHoldem.AI.ColdCallPlayer.Tests
             var handStrength = HandStrengthCalculator.Calculate(new List<Card>(), weakPlayerHand);
 
             //Assert.AreEqual(1, handStrength);
-            Assert.IsTrue(handStrength < .34 && handStrength > .24);
+            Assert.IsTrue(handStrength < .38 && handStrength > .2);
         }
 
         [TestMethod]
@@ -76,7 +76,7 @@ namespace TexasHoldem.AI.ColdCallPlayer.Tests
             var handStrength = HandStrengthCalculator.Calculate(new List<Card>(), averagePlayerHand);
 
             //Assert.AreEqual(1, handStrength);
-            Assert.IsTrue(handStrength < .55 && handStrength > .45);
+            Assert.IsTrue(handStrength < .6 && handStrength > .4);
         }
     }
 }
