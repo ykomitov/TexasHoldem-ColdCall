@@ -17,7 +17,7 @@
 
         public string Name => this.GetType().Name;
 
-        public double SuccessRate => this.GamesWon / this.GamesPlayed;
+        public double SuccessRate => (double)this.GamesWon / this.GamesPlayed;
 
         public int GamesPlayed { get; set; }
 
@@ -44,6 +44,7 @@
         public virtual void StartRound(StartRoundContext context)
         {
             this.HandStrength = HandStrengthCalculator.Calculate(context.CommunityCards.ToList(), new List<Card> { this.FirstCard, this.SecondCard });
+
             this.CommunityCards = context.CommunityCards;
         }
 

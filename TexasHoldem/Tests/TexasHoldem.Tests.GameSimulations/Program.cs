@@ -14,7 +14,7 @@
     {
         public static void Main()
         {
-            var player = new RecklessAllInState();
+            var player = new ColdCallPlayer();
             TestAgainstOthers(player);
         }
 
@@ -35,10 +35,10 @@
 
             var simulationResult = gameSimulator.Simulate(1000);
 
-            Console.WriteLine(simulationResult.SimulationDuration);
+            //Console.WriteLine(simulationResult.SimulationDuration);
             Console.WriteLine($"Total games: {simulationResult.FirstPlayerWins:0,0} - {simulationResult.SecondPlayerWins:0,0}");
-            Console.WriteLine($"Hands played: {simulationResult.HandsPlayed:0,0}");
-            Console.WriteLine(new string('=', 75));
+            //Console.WriteLine($"Hands played: {simulationResult.HandsPlayed:0,0}");
+            Console.WriteLine(new string('=', 50));
         }
     }
 }

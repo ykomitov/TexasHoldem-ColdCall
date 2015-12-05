@@ -16,6 +16,7 @@
         private IPlayerState state;
 
         private RandomGenerator rand;
+
         private int totalGamesCount;
 
         public ColdCallPlayer()
