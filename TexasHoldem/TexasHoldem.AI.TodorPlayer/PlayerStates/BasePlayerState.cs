@@ -1,12 +1,16 @@
 ﻿namespace TexasHoldem.AI.ColdCallPlayer.PlayerStates
 {
     using System.Collections.Generic;
+    using System.Linq;
+    using Helpers;
     using Logic.Cards;
     using Logic.Players;
 
     public abstract class BasePlayerState : IPlayerState
     {
-        public abstract string Name { get; }
+        public string Name => this.GetType().Name;
+
+        protected double HandStrength { get; set; }
 
         protected IReadOnlyCollection<Card> CommunityCards { get; private set; }
 
@@ -26,6 +30,7 @@
 
         public virtual void StartRound(StartRoundContext context)
         {
+            this.HandStrength = HandStrengthCalculator.Calculate(context.CommunityCards.ToList(), new List<Card> { this.FirstCard, this.SecondCard });
             this.CommunityCards = context.CommunityCards;
         }
 
