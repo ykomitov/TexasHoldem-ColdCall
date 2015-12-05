@@ -3,8 +3,8 @@
     using System;
     using Helpers;
     using Logic.Players;
-    using PlayerStates.Todor;
     using PlayerStates;
+    using PlayerStates.Todor;
 
     public class ColdCallPlayer : BasePlayer
     {
@@ -12,7 +12,7 @@
 
         private IPlayerState[] playerStates;
 
-        private IPlayerState contextPlayer;
+        private IPlayerState state;
 
         private RandomGenerator rand;
 
@@ -28,49 +28,49 @@
 
             var randomIndex = this.rand.GetRandomInteger(0, this.playerStates.Length);
 
-            this.contextPlayer = this.playerStates[randomIndex];
+            this.state = this.playerStates[randomIndex];
         }
 
         public override string Name { get { return this.name; } }
 
         public override PlayerAction GetTurn(GetTurnContext context)
         {
-            return this.contextPlayer.GetTurn(context);
+            return this.state.GetTurn(context);
         }
 
         public override void StartRound(StartRoundContext context)
         {
-            this.contextPlayer.StartRound(context);
+            this.state.StartRound(context);
             base.StartRound(context);
         }
 
         public override void StartHand(StartHandContext context)
         {
-            this.contextPlayer.StartHand(context);
+            this.state.StartHand(context);
             base.StartHand(context);
         }
 
         public override void StartGame(StartGameContext context)
         {
-            this.contextPlayer.StartGame(context);
+            this.state.StartGame(context);
             base.StartGame(context);
         }
 
         public override void EndGame(EndGameContext context)
         {
-            this.contextPlayer.EndGame(context);
+            this.state.EndGame(context);
             base.EndGame(context);
         }
 
         public override void EndHand(EndHandContext context)
         {
-            this.contextPlayer.EndHand(context);
+            this.state.EndHand(context);
             base.EndHand(context);
         }
 
         public override void EndRound(EndRoundContext context)
         {
-            this.contextPlayer.EndRound(context);
+            this.state.EndRound(context);
             base.EndRound(context);
         }
     }
