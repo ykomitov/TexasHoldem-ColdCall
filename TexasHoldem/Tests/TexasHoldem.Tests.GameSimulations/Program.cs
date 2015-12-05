@@ -8,7 +8,7 @@
     using AI.SmartPlayer;
     using Logic.Players;
     using AI.DummyPlayer;
-    using AI.TodorPlayer.PlayerStates.Todor;
+    using AI.ColdCallPlayer.PlayerStates.Todor;
 
     public static class Program
     {

@@ -8,8 +8,8 @@
     <ProjectGuid>{38F132A9-0A98-4549-AB1B-C0974C008ABB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TexasHoldem.AI.TodorPlayer</RootNamespace>
-    <AssemblyName>TexasHoldem.AI.TodorPlayer</AssemblyName>
+    <RootNamespace>TexasHoldem.AI.ColdCallPlayer</RootNamespace>
+    <AssemblyName>TexasHoldem.AI.ColdCallPlayer</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -41,6 +41,8 @@
   <ItemGroup>
     <Compile Include="Helpers\HandStrengthCalculator.cs" />
     <Compile Include="Helpers\RandomGenerator.cs" />
+    <Compile Include="PlayerStates\IPlayerState.cs" />
+    <Compile Include="PlayerStates\BasePlayerState.cs" />
     <Compile Include="PlayerStates\Todor\RecklessAllInState.cs" />
     <Compile Include="PlayerStates\Todor\SafeAllInState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,4 +1,4 @@
-﻿namespace TexasHoldem.AI.TodorPlayer.Helpers
+﻿namespace TexasHoldem.AI.ColdCallPlayer.Helpers
 {
     using System;
     using System.Collections.Generic;

@@ -1,4 +1,4 @@
-﻿namespace TexasHoldem.AI.TodorPlayer.PlayerStates.Todor
+﻿namespace TexasHoldem.AI.ColdCallPlayer.PlayerStates.Todor
 {
     using System;
     using System.Collections.Generic;
@@ -7,7 +7,7 @@
     using TexasHoldem.Logic.Cards;
     using TexasHoldem.Logic.Players;
 
-    internal class RecklessAllInState : IPlayer
+    internal class RecklessAllInState : IPlayerState
     {
         private double handStrength = 0;
 

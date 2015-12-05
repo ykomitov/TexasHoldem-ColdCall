@@ -1,24 +1,25 @@
 ﻿namespace TexasHoldem.AI.ColdCallPlayer
 {
     using System;
+    using Helpers;
     using Logic.Players;
-    using TodorPlayer.Helpers;
-    using TodorPlayer.PlayerStates.Todor;
+    using PlayerStates.Todor;
+    using PlayerStates;
 
     public class ColdCallPlayer : BasePlayer
     {
         private readonly string name = "ColdCall_" + Guid.NewGuid();
 
-        private IPlayer[] playerStates;
+        private IPlayerState[] playerStates;
 
-        private IPlayer contextPlayer;
+        private IPlayerState contextPlayer;
 
         private RandomGenerator rand;
 
         public ColdCallPlayer()
             : base()
         {
-            this.playerStates = new IPlayer[]
+            this.playerStates = new IPlayerState[]
             {
                 new SafeAllInState(),
             };
