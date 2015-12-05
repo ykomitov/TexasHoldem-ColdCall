@@ -15,8 +15,8 @@
         public static void Main()
         {
             var player = new ColdCallPlayer();
-            //TestAgainstOthers(player);
-            TodorTests(player);
+            TestAgainstOthers(player);
+            //TodorTests(player);
         }
 
         private static void TodorTests(IPlayer player1)
