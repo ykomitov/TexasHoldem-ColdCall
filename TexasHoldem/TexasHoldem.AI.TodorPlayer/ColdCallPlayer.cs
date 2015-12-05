@@ -70,7 +70,7 @@
                 this.state.GamesWon++;
             }
 
-            if (this.totalGamesCount % 50 == 0)
+            if (this.totalGamesCount % 10 == 0)
             {
                 var bestSuccessRate = this.playerStates.Max(x => x.SuccessRate);
                 var bestState = this.playerStates.First(x => x.SuccessRate == bestSuccessRate);

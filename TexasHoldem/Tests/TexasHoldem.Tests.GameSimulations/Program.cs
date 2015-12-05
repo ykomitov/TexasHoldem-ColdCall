@@ -14,8 +14,14 @@
     {
         public static void Main()
         {
-            var player = new SafeAllInState();
-            TestAgainstOthers(player);
+            var player = new ColdCallPlayer();
+            //TestAgainstOthers(player);
+            TodorTests(player);
+        }
+
+        private static void TodorTests(IPlayer player1)
+        {
+            SimulateGames(new DynamicSimulator(player1, new AlwaysAllInDummyPlayer()));
         }
 
         private static void TestAgainstOthers(IPlayer player1)
@@ -23,7 +29,6 @@
             SimulateGames(new DynamicSimulator(player1, new DummyPlayer()));
             SimulateGames(new DynamicSimulator(player1, new AlwaysAllInDummyPlayer()));
             SimulateGames(new DynamicSimulator(player1, new AlwaysCallDummyPlayer()));
-            //SimulateGames(new DynamicSimulator(player1, new AlwaysFoldDummyPlayer()));
             SimulateGames(new DynamicSimulator(player1, new AlwaysRaiseDummyPlayer()));
             SimulateGames(new DynamicSimulator(player1, new SmartPlayer()));
         }
