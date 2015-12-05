@@ -14,7 +14,7 @@
     {
         public static void Main()
         {
-            var player = new ColdCallPlayer();
+            var player = new SafeAllInState();
             TestAgainstOthers(player);
         }
 
