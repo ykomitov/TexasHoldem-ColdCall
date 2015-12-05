@@ -20,7 +20,7 @@
         {
             this.playerStates = new IPlayer[]
             {
-                new AllInPlayerState(),
+                new SafeAllInState(),
             };
 
             this.rand = new RandomGenerator();

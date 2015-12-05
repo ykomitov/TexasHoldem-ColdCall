@@ -7,13 +7,13 @@
     using TexasHoldem.Logic.Cards;
     using TexasHoldem.Logic.Players;
 
-    internal class AllInPlayerState : IPlayer
+    internal class SafeAllInState : IPlayer
     {
         private double handStrength = 0;
 
         public Card FirstCard { get; private set; }
 
-        public string Name { get { return "AllInContextPlayer"; } }
+        public string Name { get { return this.GetType().Name; } }
 
         public Card SecondCard { get; private set; }
 
