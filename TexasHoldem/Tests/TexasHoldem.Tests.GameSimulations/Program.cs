@@ -14,7 +14,7 @@
     {
         public static void Main()
         {
-            var player = new ColdCallPlayer();
+            var player = new RecklessAllInState();
             TestAgainstOthers(player);
         }
 
@@ -23,7 +23,7 @@
             SimulateGames(new DynamicSimulator(player1, new DummyPlayer()));
             SimulateGames(new DynamicSimulator(player1, new AlwaysAllInDummyPlayer()));
             SimulateGames(new DynamicSimulator(player1, new AlwaysCallDummyPlayer()));
-            SimulateGames(new DynamicSimulator(player1, new AlwaysFoldDummyPlayer()));
+            //SimulateGames(new DynamicSimulator(player1, new AlwaysFoldDummyPlayer()));
             SimulateGames(new DynamicSimulator(player1, new AlwaysRaiseDummyPlayer()));
             SimulateGames(new DynamicSimulator(player1, new SmartPlayer()));
         }

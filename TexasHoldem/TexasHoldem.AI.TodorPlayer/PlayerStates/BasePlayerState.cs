@@ -6,9 +6,22 @@
     using Logic.Cards;
     using Logic.Players;
 
-    public abstract class BasePlayerState : IPlayerState
+    public abstract class BasePlayerState : IPlayerState, IPlayer
     {
+        public BasePlayerState()
+        {
+            // we need defaults to one for proper initial SuccessRate return
+            this.GamesPlayed = 1;
+            this.GamesWon = 1;
+        }
+
         public string Name => this.GetType().Name;
+
+        public double SuccessRate => this.GamesWon / this.GamesPlayed;
+
+        public int GamesPlayed { get; set; }
+
+        public int GamesWon { get; set; }
 
         protected double HandStrength { get; set; }
 

@@ -3,7 +3,7 @@
     using System.Linq;
     using TexasHoldem.Logic.Players;
 
-    internal class RecklessAllInState : BasePlayerState
+    public class RecklessAllInState : BasePlayerState
     {
         public override PlayerAction GetTurn(GetTurnContext context)
         {

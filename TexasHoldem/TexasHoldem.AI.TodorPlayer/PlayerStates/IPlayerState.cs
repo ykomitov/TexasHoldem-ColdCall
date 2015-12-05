@@ -1,11 +1,16 @@
 ﻿namespace TexasHoldem.AI.ColdCallPlayer.PlayerStates
 {
-    using Logic.Cards;
     using TexasHoldem.Logic.Players;
 
     internal interface IPlayerState
     {
         string Name { get; }
+
+        int GamesPlayed { get; set; }
+
+        int GamesWon { get; set; }
+
+        double SuccessRate { get; }
 
         void StartGame(StartGameContext context);
 
