@@ -2,13 +2,33 @@
 {
     using System;
     using Logic.Players;
+    using TodorPlayer.Helpers;
     using TodorPlayer.PlayerStates.Todor;
 
     public class ColdCallPlayer : BasePlayer
     {
         private readonly string name = "ColdCall_" + Guid.NewGuid();
 
-        private IPlayer contextPlayer = new TodorAllInPlayerState();
+        private IPlayer[] playerStates;
+
+        private IPlayer contextPlayer;
+
+        private RandomGenerator rand;
+
+        public ColdCallPlayer()
+            : base()
+        {
+            this.playerStates = new IPlayer[]
+            {
+                new TodorAllInPlayerState(),
+            };
+
+            this.rand = new RandomGenerator();
+
+            var randomIndex = this.rand.GetRandomInteger(0, this.playerStates.Length);
+
+            this.contextPlayer = this.playerStates[randomIndex];
+        }
 
         public override string Name { get { return this.name; } }
 

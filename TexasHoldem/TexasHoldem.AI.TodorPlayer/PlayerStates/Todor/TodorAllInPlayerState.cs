@@ -7,7 +7,7 @@
     using TexasHoldem.Logic.Cards;
     using TexasHoldem.Logic.Players;
 
-    public class TodorAllInPlayerState : IPlayer
+    internal class TodorAllInPlayerState : IPlayer
     {
         private double handStrength = 0;
 
