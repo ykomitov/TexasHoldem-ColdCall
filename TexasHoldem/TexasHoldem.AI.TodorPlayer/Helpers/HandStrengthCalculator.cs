@@ -8,7 +8,7 @@
 
     public static class HandStrengthCalculator
     {
-        private const int SimulationsCount = 25;
+        private const int SimulationsCount = 100;
 
         public static double Calculate(ICollection<Card> communityCards, ICollection<Card> playerCards)
         {

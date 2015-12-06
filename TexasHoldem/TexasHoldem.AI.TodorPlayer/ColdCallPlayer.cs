@@ -11,13 +11,11 @@
     public class ColdCallPlayer : BasePlayer
     {
         private readonly string name = "ColdCall_" + Guid.NewGuid();
+        private readonly int stateEvaluationGamesCount = 5;
 
         private IPlayerState[] playerStates;
-
         private IPlayerState state;
-
         private RandomGenerator rand;
-
         private int totalGamesCount;
 
         public ColdCallPlayer()
@@ -27,7 +25,8 @@
             {
                 new SafeAllInState(),
                 new RecklessAllInState(),
-                new NormalPlayer()
+                new NormalState(),
+                new AlwaysAllInProtectionState()
             };
 
             this.rand = new RandomGenerator();
@@ -72,7 +71,7 @@
                 this.state.GamesWon++;
             }
 
-            if (this.totalGamesCount % 10 == 0)
+            if (this.totalGamesCount % this.stateEvaluationGamesCount == 0)
             {
                 var bestSuccessRate = this.playerStates.Max(x => x.SuccessRate);
                 var bestState = this.playerStates.First(x => x.SuccessRate == bestSuccessRate);

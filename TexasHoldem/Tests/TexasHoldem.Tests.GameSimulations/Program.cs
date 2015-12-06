@@ -15,37 +15,55 @@
     {
         public static void Main()
         {
-            var player = new ColdCallPlayer();
-            //var playerNormal = new NormalPlayer();
-            //var playerAggressive = new AggressivePlayer();
-            //TestAgainstOthers(player);
-            //TodorTests(player);
-            YavorTests(player);
+            Func<IPlayer> getPlayer = () => new ColdCallPlayer();
+
+            TestAgainstOthers(getPlayer);
+            //TodorTests(getPlayer);
+            //YavorTests(getPlayer);
         }
 
-        private static void TodorTests(IPlayer player1)
+        private static void TodorTests(Func<IPlayer> getPlayer)
         {
-            SimulateGames(new DynamicSimulator(player1, new AlwaysAllInDummyPlayer()));
+            var p = getPlayer();
+            SimulateGames(new DynamicSimulator(p, new AlwaysAllInDummyPlayer()));
         }
 
-        private static void YavorTests(IPlayer player1)
+        private static void YavorTests(Func<IPlayer> getPlayer)
         {
-            SimulateGames(new DynamicSimulator(player1, new SafeAllInState()));
-            SimulateGames(new DynamicSimulator(player1, new RecklessAllInState()));
-            //SimulateGames(new DynamicSimulator(player1, new DummyPlayer()));
-            //SimulateGames(new DynamicSimulator(player1, new AlwaysAllInDummyPlayer()));
-            //SimulateGames(new DynamicSimulator(player1, new AlwaysCallDummyPlayer()));
-            //SimulateGames(new DynamicSimulator(player1, new AlwaysRaiseDummyPlayer()));
-            //SimulateGames(new DynamicSimulator(player1, new SmartPlayer()));
+            var p = getPlayer();
+            SimulateGames(new DynamicSimulator(p, new SafeAllInState()));
+            p = getPlayer();
+            SimulateGames(new DynamicSimulator(p, new RecklessAllInState()));
+            p = getPlayer();
+            SimulateGames(new DynamicSimulator(p, new DummyPlayer()));
+            p = getPlayer();
+            SimulateGames(new DynamicSimulator(p, new AlwaysAllInDummyPlayer()));
+            p = getPlayer();
+            SimulateGames(new DynamicSimulator(p, new AlwaysCallDummyPlayer()));
+            p = getPlayer();
+            SimulateGames(new DynamicSimulator(p, new AlwaysRaiseDummyPlayer()));
+            p = getPlayer();
+            SimulateGames(new DynamicSimulator(p, new SmartPlayer()));
         }
 
-        private static void TestAgainstOthers(IPlayer player1)
+        private static void TestAgainstOthers(Func<IPlayer> getPlayer)
         {
-            SimulateGames(new DynamicSimulator(player1, new DummyPlayer()));
-            SimulateGames(new DynamicSimulator(player1, new AlwaysAllInDummyPlayer()));
-            SimulateGames(new DynamicSimulator(player1, new AlwaysCallDummyPlayer()));
-            SimulateGames(new DynamicSimulator(player1, new AlwaysRaiseDummyPlayer()));
-            SimulateGames(new DynamicSimulator(player1, new SmartPlayer()));
+            var p = getPlayer();
+            SimulateGames(new DynamicSimulator(p, new DummyPlayer()));
+            p = getPlayer();
+            SimulateGames(new DynamicSimulator(p, new AlwaysAllInDummyPlayer()));
+            p = getPlayer();
+            SimulateGames(new DynamicSimulator(p, new AlwaysCallDummyPlayer()));
+            p = getPlayer();
+            SimulateGames(new DynamicSimulator(p, new AlwaysRaiseDummyPlayer()));
+            p = getPlayer();
+            SimulateGames(new DynamicSimulator(p, new SmartPlayer()));
+            p = getPlayer();
+            SimulateGames(new DynamicSimulator(p, new SafeAllInState()));
+            p = getPlayer();
+            SimulateGames(new DynamicSimulator(p, new RecklessAllInState()));
+            p = getPlayer();
+            SimulateGames(new DynamicSimulator(p, new NormalState()));
         }
 
         public static void SimulateGames(IGameSimulator gameSimulator)
@@ -53,7 +71,7 @@
             //Console.WriteLine($"Running {gameSimulator.GetType().Name}...");
             Console.WriteLine($"Running {gameSimulator}...");
 
-            var simulationResult = gameSimulator.Simulate(1000);
+            var simulationResult = gameSimulator.Simulate(100);
 
             //Console.WriteLine(simulationResult.SimulationDuration);
             Console.WriteLine($"Total games: {simulationResult.FirstPlayerWins:0,0} - {simulationResult.SecondPlayerWins:0,0}");

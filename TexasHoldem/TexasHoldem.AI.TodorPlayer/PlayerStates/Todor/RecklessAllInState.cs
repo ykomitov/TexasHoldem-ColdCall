@@ -1,6 +1,5 @@
 ﻿namespace TexasHoldem.AI.ColdCallPlayer.PlayerStates.Todor
 {
-    using System.Linq;
     using TexasHoldem.Logic.Players;
 
     internal class RecklessAllInState : BasePlayerState
