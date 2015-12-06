@@ -6,7 +6,7 @@
     using Logic.Cards;
     using Logic.Players;
 
-    public abstract class BasePlayerState : IPlayerState, IPlayer
+    internal abstract class BasePlayerState : IPlayerState, IPlayer
     {
         public BasePlayerState()
         {

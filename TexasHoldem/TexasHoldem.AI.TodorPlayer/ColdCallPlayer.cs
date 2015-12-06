@@ -6,6 +6,7 @@
     using Logic.Players;
     using PlayerStates;
     using PlayerStates.Todor;
+    using PlayerStates.Yavor;
 
     public class ColdCallPlayer : BasePlayer
     {
@@ -25,7 +26,8 @@
             this.playerStates = new IPlayerState[]
             {
                 new SafeAllInState(),
-                new RecklessAllInState()
+                new RecklessAllInState(),
+                new NormalPlayer()
             };
 
             this.rand = new RandomGenerator();

@@ -15,12 +15,12 @@
     {
         public static void Main()
         {
-            //var player = new ColdCallPlayer();
-            var playerNormal = new NormalPlayer();
-            var playerAggressive = new AggressivePlayer();
+            var player = new ColdCallPlayer();
+            //var playerNormal = new NormalPlayer();
+            //var playerAggressive = new AggressivePlayer();
             //TestAgainstOthers(player);
             //TodorTests(player);
-            YavorTests(playerNormal);
+            YavorTests(player);
         }
 
         private static void TodorTests(IPlayer player1)
@@ -32,11 +32,11 @@
         {
             SimulateGames(new DynamicSimulator(player1, new SafeAllInState()));
             SimulateGames(new DynamicSimulator(player1, new RecklessAllInState()));
-            SimulateGames(new DynamicSimulator(player1, new DummyPlayer()));
-            SimulateGames(new DynamicSimulator(player1, new AlwaysAllInDummyPlayer()));
-            SimulateGames(new DynamicSimulator(player1, new AlwaysCallDummyPlayer()));
-            SimulateGames(new DynamicSimulator(player1, new AlwaysRaiseDummyPlayer()));
-            SimulateGames(new DynamicSimulator(player1, new SmartPlayer()));
+            //SimulateGames(new DynamicSimulator(player1, new DummyPlayer()));
+            //SimulateGames(new DynamicSimulator(player1, new AlwaysAllInDummyPlayer()));
+            //SimulateGames(new DynamicSimulator(player1, new AlwaysCallDummyPlayer()));
+            //SimulateGames(new DynamicSimulator(player1, new AlwaysRaiseDummyPlayer()));
+            //SimulateGames(new DynamicSimulator(player1, new SmartPlayer()));
         }
 
         private static void TestAgainstOthers(IPlayer player1)
