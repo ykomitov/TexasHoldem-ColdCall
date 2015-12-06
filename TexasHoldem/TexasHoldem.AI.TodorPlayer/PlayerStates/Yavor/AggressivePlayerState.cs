@@ -3,7 +3,7 @@
     using Helpers;
     using Logic.Players;
 
-    internal class NormalState : BasePlayerState
+    internal class AggressivePlayerState : BasePlayerState
     {
         private const double NotPlayableThreshold = 0.8;
         private const double NotReccomendedThreshold = 1.0;
@@ -28,30 +28,23 @@
               If fold and amount to call is zero, then call.*/
 
             // If we can check or call without paying any money, do so
-            if (this.HandStrength < .4 && context.CanCheck == true)
+            if (this.RateOfReturn < 1 && context.CanCheck == true)
             {
                 return PlayerAction.CheckOrCall();
             }
 
             // Fold in all win scenarios with weak hand
-            double allWinPlayHandStrength = 0.95;
-            bool opponentIsAllIn = (context.MoneyLeft + context.CurrentPot) == 2000;
-            if (opponentIsAllIn && this.HandStrength <= allWinPlayHandStrength)
+            if (context.IsAllIn && this.HandStrength < .5)
             {
                 return PlayerAction.Fold();
             }
 
-            if (opponentIsAllIn && this.HandStrength > allWinPlayHandStrength)
-            {
-                return PlayerAction.CheckOrCall();
-            }
-
             // Calculate random between 0.0 and 1.0 for bluff scenarios
-            double decisionCoefficient = this.random.GetRandomDouble();
+            var decisionCoefficient = this.random.GetRandomDouble();
 
             if (this.RateOfReturn <= NotPlayableThreshold)
             {
-                if (decisionCoefficient <= .95)
+                if (decisionCoefficient <= .65)
                 {
                     return PlayerAction.Fold();
                 }
@@ -62,11 +55,11 @@
             }
             else if (this.RateOfReturn > NotPlayableThreshold && this.RateOfReturn <= NotReccomendedThreshold)
             {
-                if (decisionCoefficient <= .8) // 0.8
+                if (decisionCoefficient <= .3) // 0.8
                 {
                     return PlayerAction.Fold();
                 }
-                else if (decisionCoefficient > .8 && decisionCoefficient <= .85) // 0.80 - 0.85
+                else if (decisionCoefficient > .3 && decisionCoefficient <= .65) // 0.80 - 0.85
                 {
                     return PlayerAction.CheckOrCall();
                 }
@@ -77,7 +70,7 @@
             }
             else if (this.RateOfReturn > NotReccomendedThreshold && this.RateOfReturn < PlayableThreshold)
             {
-                if (decisionCoefficient <= .6)
+                if (decisionCoefficient <= .4)
                 {
                     return PlayerAction.CheckOrCall();
                 }
@@ -88,7 +81,7 @@
             }
             else
             {
-                if (decisionCoefficient <= .3)
+                if (decisionCoefficient <= .1)
                 {
                     return PlayerAction.CheckOrCall();
                 }
