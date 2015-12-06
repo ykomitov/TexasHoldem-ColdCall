@@ -15,7 +15,7 @@
     {
         public static void Main()
         {
-            var player = new ColdCallPlayer();
+            var player = new AllInBusterState();
             //var playerNormal = new NormalPlayer();
             //var playerAggressive = new AggressivePlayer();
             //TestAgainstOthers(player);
@@ -30,10 +30,10 @@
 
         private static void YavorTests(IPlayer player1)
         {
-            SimulateGames(new DynamicSimulator(player1, new SafeAllInState()));
-            SimulateGames(new DynamicSimulator(player1, new RecklessAllInState()));
+            //SimulateGames(new DynamicSimulator(player1, new SafeAllInState()));
+            //SimulateGames(new DynamicSimulator(player1, new RecklessAllInState()));
             //SimulateGames(new DynamicSimulator(player1, new DummyPlayer()));
-            //SimulateGames(new DynamicSimulator(player1, new AlwaysAllInDummyPlayer()));
+            SimulateGames(new DynamicSimulator(player1, new AlwaysAllInDummyPlayer()));
             //SimulateGames(new DynamicSimulator(player1, new AlwaysCallDummyPlayer()));
             //SimulateGames(new DynamicSimulator(player1, new AlwaysRaiseDummyPlayer()));
             //SimulateGames(new DynamicSimulator(player1, new SmartPlayer()));

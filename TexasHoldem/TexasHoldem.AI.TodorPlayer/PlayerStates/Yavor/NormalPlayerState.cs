@@ -3,7 +3,7 @@
     using Helpers;
     using Logic.Players;
 
-    internal class NormalPlayer : BasePlayerState
+    internal class NormalPlayerState : BasePlayerState
     {
         private const double NotPlayableThreshold = 0.8;
         private const double NotReccomendedThreshold = 1.0;

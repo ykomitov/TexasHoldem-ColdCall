@@ -27,7 +27,7 @@
             {
                 new SafeAllInState(),
                 new RecklessAllInState(),
-                new NormalPlayer()
+                new NormalPlayerState()
             };
 
             this.rand = new RandomGenerator();

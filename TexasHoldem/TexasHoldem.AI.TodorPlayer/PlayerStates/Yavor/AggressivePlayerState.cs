@@ -3,7 +3,7 @@
     using Helpers;
     using Logic.Players;
 
-    internal class AggressivePlayer : BasePlayerState
+    internal class AggressivePlayerState : BasePlayerState
     {
         private const double NotPlayableThreshold = 0.8;
         private const double NotReccomendedThreshold = 1.0;
