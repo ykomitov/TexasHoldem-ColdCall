@@ -6,11 +6,11 @@
     using TexasHoldem.Logic.Extensions;
     using TexasHoldem.Logic.Helpers;
 
-    public static class HandStrengthCalculator
+    public static class OddsCalculator
     {
         private const int SimulationsCount = 100;
 
-        public static double Calculate(ICollection<Card> communityCards, ICollection<Card> playerCards)
+        public static double CalculateHandStrength(ICollection<Card> communityCards, ICollection<Card> playerCards)
         {
             double wins = 0;
             IList<Card> deck = GetDeck(communityCards, playerCards);

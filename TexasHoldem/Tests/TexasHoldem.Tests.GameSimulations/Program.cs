@@ -17,8 +17,8 @@
         {
             Func<IPlayer> getPlayer = () => new ColdCallPlayer();
 
-            TestAgainstOthers(getPlayer);
-            //TodorTests(getPlayer);
+            //TestAgainstOthers(getPlayer);
+            TodorTests(getPlayer);
             //YavorTests(getPlayer);
         }
 

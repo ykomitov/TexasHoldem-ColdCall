@@ -14,12 +14,12 @@
         public override PlayerAction GetTurn(GetTurnContext context)
         {
             // Calculate pot odds & rate of return in the beginning
-            this.PotOdds = HandStrengthCalculator.CalculatePotOdds(
+            this.PotOdds = OddsCalculator.CalculatePotOdds(
                 context.CurrentPot,
                 context.MoneyToCall,
                 context.SmallBlind * 2);
 
-            this.RateOfReturn = HandStrengthCalculator.CalculateRateOfReturn(this.HandStrength, this.PotOdds);
+            this.RateOfReturn = OddsCalculator.CalculateRateOfReturn(this.HandStrength, this.PotOdds);
 
             /*If RR < 0.8 then 95% fold, 0 % call, 5% raise (bluff)   // Not playable threshold
               If RR < 1.0 then 80% fold, 5% call, 15% raise (bluff)   // Not reccomended threshold

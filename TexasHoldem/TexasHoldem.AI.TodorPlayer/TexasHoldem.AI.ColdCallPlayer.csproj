@@ -39,7 +39,7 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helpers\HandStrengthCalculator.cs" />
+    <Compile Include="Helpers\OddsCalculator.cs" />
     <Compile Include="Helpers\RandomGenerator.cs" />
     <Compile Include="PlayerStates\IPlayerState.cs" />
     <Compile Include="PlayerStates\BasePlayerState.cs" />

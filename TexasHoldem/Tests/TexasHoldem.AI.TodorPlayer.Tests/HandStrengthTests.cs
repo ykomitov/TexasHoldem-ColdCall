@@ -40,7 +40,7 @@ namespace TexasHoldem.AI.ColdCallPlayer.Tests
         [TestMethod]
         public void GetDeckShouldRemoveProperAmountOfCards1()
         {
-            var deck = HandStrengthCalculator.GetDeck(new List<Card>(), new List<Card> { new Card(CardSuit.Club, CardType.Ace) });
+            var deck = OddsCalculator.GetDeck(new List<Card>(), new List<Card> { new Card(CardSuit.Club, CardType.Ace) });
 
             Assert.AreEqual(51, deck.Count);
         }
@@ -48,7 +48,7 @@ namespace TexasHoldem.AI.ColdCallPlayer.Tests
         [TestMethod]
         public void GetDeckShouldRemoveProperAmountOfCards2()
         {
-            var deck = HandStrengthCalculator.GetDeck(straightFlushCommunityCards, straightFlushPlayerCards);
+            var deck = OddsCalculator.GetDeck(straightFlushCommunityCards, straightFlushPlayerCards);
 
             Assert.AreEqual(45, deck.Count);
         }
@@ -56,7 +56,7 @@ namespace TexasHoldem.AI.ColdCallPlayer.Tests
         [TestMethod]
         public void CalculateShouldReturnPlausibleHandStrength1()
         {
-            var handStrength = HandStrengthCalculator.Calculate(straightFlushCommunityCards, straightFlushPlayerCards);
+            var handStrength = OddsCalculator.CalculateHandStrength(straightFlushCommunityCards, straightFlushPlayerCards);
 
             Assert.AreEqual(1, handStrength);
         }
@@ -64,7 +64,7 @@ namespace TexasHoldem.AI.ColdCallPlayer.Tests
         [TestMethod]
         public void CalculateShouldReturnPlausibleHandStrength2()
         {
-            var handStrength = HandStrengthCalculator.Calculate(new List<Card>(), weakPlayerHand);
+            var handStrength = OddsCalculator.CalculateHandStrength(new List<Card>(), weakPlayerHand);
 
             //Assert.AreEqual(1, handStrength);
             Assert.IsTrue(handStrength < .38 && handStrength > .2);
@@ -73,7 +73,7 @@ namespace TexasHoldem.AI.ColdCallPlayer.Tests
         [TestMethod]
         public void CalculateShouldReturnPlausibleHandStrength3()
         {
-            var handStrength = HandStrengthCalculator.Calculate(new List<Card>(), averagePlayerHand);
+            var handStrength = OddsCalculator.CalculateHandStrength(new List<Card>(), averagePlayerHand);
 
             //Assert.AreEqual(1, handStrength);
             Assert.IsTrue(handStrength < .6 && handStrength > .4);
