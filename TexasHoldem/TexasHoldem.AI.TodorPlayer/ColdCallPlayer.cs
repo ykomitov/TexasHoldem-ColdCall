@@ -25,7 +25,7 @@
             {
                 new SafeAllInState(),
                 new RecklessAllInState(),
-                new NormalState(),
+                new NormalPlayerState(),
                 new AlwaysAllInProtectionState()
             };
 

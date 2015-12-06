@@ -63,7 +63,7 @@
             p = getPlayer();
             SimulateGames(new DynamicSimulator(p, new RecklessAllInState()));
             p = getPlayer();
-            SimulateGames(new DynamicSimulator(p, new NormalState()));
+            SimulateGames(new DynamicSimulator(p, new NormalPlayerState()));
         }
 
         public static void SimulateGames(IGameSimulator gameSimulator)
