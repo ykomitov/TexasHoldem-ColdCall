@@ -44,15 +44,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DecisionMaker.cs" />
+    <Compile Include="AI\BestHandEvaluator.cs" />
+    <Compile Include="AI\DecisionMaker.cs" />
     <Compile Include="ForcePlayer.cs" />
     <Compile Include="Helpers\CardValuationType.cs" />
-    <Compile Include="Helpers\HandStrengthValuation.cs" />
+    <Compile Include="AI\InitialHandStrengthEvaluator.cs" />
+    <Compile Include="PlayersAI.cs" />
+    <Compile Include="AI\ProbabilityEvaluator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Contracts\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

@@ -8,8 +8,8 @@
 
     public class PokerGame
     {
-        private const int gamePlaied = 100;
-        private const bool printing = false;
+        private const int gamePlaied = 10;
+        private const bool printing = true;
 
         public static void Main()
         {
@@ -70,7 +70,7 @@
 
             Console.WriteLine();
             Console.WriteLine("Players Wining Ratio: {0} / {1}", player2.Name, player1.Name);
-            Console.WriteLine(" {0} ",  (float)player2WinIndex / player1WinIndex);
+            Console.WriteLine(" {0:F2} ",  (float)player2WinIndex / player1WinIndex);
         }
     }
 }
