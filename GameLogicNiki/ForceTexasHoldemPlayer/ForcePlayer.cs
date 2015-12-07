@@ -1,12 +1,16 @@
 ﻿namespace ForceTexasHoldemPlayer
 {
-    using Helpers;
-    using TexasHoldem.Logic;
     using TexasHoldem.Logic.Players;
-    
+
     public class ForcePlayer : BasePlayer
     {
-        private readonly string name = "-- The Force Player --";
+        private readonly string name = "TheForcePlayer_" + System.Guid.NewGuid();
+        private PlayersAI ai;
+
+        public ForcePlayer()
+        {
+            this.ai = new PlayersAI();
+        }
 
         public override string Name
         {
@@ -18,18 +22,9 @@
 
         public override PlayerAction GetTurn(GetTurnContext context)
         {
-            CardValuationType playHand = CardValuationType.Risky;
+            ai.ProcessCurrentRound(context, this.FirstCard, this.SecondCard, this.CommunityCards);
 
-            if (context.RoundType == GameRoundType.PreFlop)
-            {
-                playHand = HandStrengthValuation.PreFlop(this.FirstCard, this.SecondCard);
-            }
-            else
-            {
-                playHand = HandStrengthValuation.InGame(this.FirstCard, this.SecondCard, this.CommunityCards);
-            }
-
-            return DecisionMaker.Deside(playHand, context);
+            return ai.Action;
         }
     }
 }
