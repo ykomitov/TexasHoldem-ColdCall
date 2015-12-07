@@ -10,7 +10,13 @@
 
         int GamesWon { get; set; }
 
-        double SuccessRate { get; }
+        double GamesSuccessRate { get; }
+
+        double HandsSuccessRate { get; }
+
+        int HandsWon { get; set; }
+
+        int HandsPlayed { get; set; }
 
         void StartGame(StartGameContext context);
 

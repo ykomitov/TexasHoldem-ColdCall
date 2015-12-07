@@ -8,17 +8,19 @@
     using PlayerStates.Todor;
     using PlayerStates.Yavor;
 
-    public class ColdCallPlayer : BasePlayer
+    internal class StateEvalOnHandsPlayer : BasePlayer
     {
         private readonly string name = "ColdCall_" + Guid.NewGuid();
-        private readonly int stateEvaluationGamesCount = 5;
+        private readonly int stateEvaluationHandsCount = 5;
 
         private IPlayerState[] playerStates;
         private IPlayerState state;
         private RandomGenerator rand;
         private int totalGamesCount;
+        private int prevHandMoney;
+        private int currentGameTotalHandsCount;
 
-        public ColdCallPlayer()
+        public StateEvalOnHandsPlayer()
             : base()
         {
             this.playerStates = new IPlayerState[]
@@ -51,39 +53,44 @@
 
         public override void StartHand(StartHandContext context)
         {
+            if (this.currentGameTotalHandsCount != 0)
+            {
+                if (context.MoneyLeft > this.prevHandMoney)
+                {
+                    this.state.HandsWon++;
+                }
+            }
+
+            this.currentGameTotalHandsCount++;
+            this.state.HandsPlayed++;
+            this.prevHandMoney = context.MoneyLeft;
+
             this.state.StartHand(context);
             base.StartHand(context);
         }
 
         public override void StartGame(StartGameContext context)
         {
+            this.currentGameTotalHandsCount = 0;
             this.state.StartGame(context);
             base.StartGame(context);
         }
 
         public override void EndGame(EndGameContext context)
         {
-            this.totalGamesCount++;
-
-            this.state.GamesPlayed++;
-            if (context.WinnerName == this.Name)
-            {
-                this.state.GamesWon++;
-            }
-
-            if (this.totalGamesCount % this.stateEvaluationGamesCount == 0)
-            {
-                var bestSuccessRate = this.playerStates.Max(x => x.SuccessRate);
-                var bestState = this.playerStates.First(x => x.SuccessRate == bestSuccessRate);
-                this.state = bestState;
-            }
-
             this.state.EndGame(context);
             base.EndGame(context);
         }
 
         public override void EndHand(EndHandContext context)
         {
+            if (this.state.HandsPlayed > 0 && this.state.HandsPlayed % 100 == 0)
+            {
+                var bestRate = this.playerStates.Max(x => x.HandsSuccessRate);
+                var bestState = this.playerStates.First(x => x.HandsSuccessRate == bestRate);
+                this.state = bestState;
+            }
+
             this.state.EndHand(context);
             base.EndHand(context);
         }

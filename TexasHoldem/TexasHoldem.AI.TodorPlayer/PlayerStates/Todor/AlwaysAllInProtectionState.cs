@@ -6,7 +6,7 @@
     {
         private const double HandStrengthMargin = .6; // .6.1
         private const double BlindRatioMargin = .01;
-        private int initialMoney;
+        private int initialMoney = 1000;
 
         public override PlayerAction GetTurn(GetTurnContext context)
         {
@@ -26,7 +26,7 @@
 
         public override void StartGame(StartGameContext context)
         {
-            this.initialMoney = context.StartMoney;
+            //this.initialMoney = context.StartMoney;
             base.StartGame(context);
         }
     }

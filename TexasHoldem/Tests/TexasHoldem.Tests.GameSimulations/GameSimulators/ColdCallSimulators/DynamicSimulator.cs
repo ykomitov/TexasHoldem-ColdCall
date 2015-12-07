@@ -14,7 +14,7 @@
         public DynamicSimulator(IPlayer first, IPlayer second)
         {
             this.firstPlayer = first;
-            this.secondPlayer = second;            
+            this.secondPlayer = second;       
         }
 
         public string Name { get; set; }

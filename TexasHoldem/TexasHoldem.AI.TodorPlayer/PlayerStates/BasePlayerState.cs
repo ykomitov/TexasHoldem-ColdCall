@@ -1,5 +1,6 @@
 ﻿namespace TexasHoldem.AI.ColdCallPlayer.PlayerStates
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Helpers;
@@ -8,20 +9,31 @@
 
     internal abstract class BasePlayerState : IPlayerState, IPlayer
     {
+        private string guid;
+
         public BasePlayerState()
         {
             // we need defaults to one for proper initial SuccessRate return
             this.GamesPlayed = 1;
             this.GamesWon = 1;
+            this.HandsPlayed = 1;
+            this.HandsWon = 1;
+            this.guid = Guid.NewGuid().ToString();
         }
 
-        public string Name => this.GetType().Name;
+        public string Name => this.GetType().Name + " " + this.guid;
 
-        public double SuccessRate => (double)this.GamesWon / this.GamesPlayed;
+        public double GamesSuccessRate => (double)this.GamesWon / this.GamesPlayed;
+
+        public double HandsSuccessRate => (double)this.HandsWon / this.HandsPlayed;
 
         public int GamesPlayed { get; set; }
 
         public int GamesWon { get; set; }
+
+        public int HandsWon { get; set; }
+
+        public int HandsPlayed { get; set; }
 
         protected double HandStrength { get; set; }
 

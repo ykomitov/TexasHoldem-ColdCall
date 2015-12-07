@@ -17,7 +17,7 @@
                 }
             }
 
-            if (this.HandStrength < .42)
+            if (this.HandStrength < .42 && !context.CanCheck)
             {
                 return PlayerAction.Fold();
             }
@@ -25,7 +25,7 @@
             var raise = context.MoneyLeft;
             if (this.HandStrength > .95 && raise > 0)
             {
-                return PlayerAction.Raise(raise);
+                return PlayerAction.Raise(raise / 2);
             }
 
             return PlayerAction.CheckOrCall();
